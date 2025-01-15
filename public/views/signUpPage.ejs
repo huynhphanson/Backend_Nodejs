@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tsdev</title>
+  <link rel="stylesheet" href="../css/styleGeneral.css">
+</head>
+<body>
+  <div class="signUpContainer">
+    <form action="/signUpUser" class="formContainer" method="post">
+      <h1>ĐĂNG KÝ</h1>
+      <% if (typeof errors !== 'undefined') { %>
+        <h2><%= errors %></h2>
+      <% } %>
+      <div class="usernameContainer">
+        <p>Username:</p>
+        <input type="text" placeholder="Nhập Username" name="userName">
+      </div>
+      <div class="emailContainer">
+        <p>Email:</p>
+        <input type="text" placeholder="Nhập Email" name="userEmail">
+      </div>
+      <div class="passwordContainer">
+        <p>Password:</p>
+        <input type="password" placeholder="Nhập password" name="userPassword">
+      </div>
+      <div class="passwordRepeatContainer">
+        <p>Repeat Password:</p>
+        <input type="password" placeholder="Nhập password" name="passwordConfirm">
+      </div>    
+      <div class="signUpBtnContainer">
+        <input type="submit" value="ĐĂNG KÝ">
+      </div>
+      <div class="refContainer">
+        <p>Đã có tài khoản ? <a href="/signin">Đăng nhập</a></p>
+      </div>
+    </form>
+  </div>
+  <script>
+
+  </script>
+</body>
+</html>
