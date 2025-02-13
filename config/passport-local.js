@@ -13,11 +13,16 @@ export function initializePassport(passport) {
       console.log(`Password: ${password}`);
       try {
         let [results, fields] = await database.query(QUERY.SELECT_USER, [email]);
-        if(!results.length) throw new Error('User not Found');
-        if(!await bcrypt.compare(password, results[0].hashPass)) throw new Error('Password Incorect');
+        console.log('results:', results);
+        if(!results.length) return done(null, false, { message: 'No User Found'});
+        if(!await bcrypt.compare(password, results[0].hashPass)) return done(null, false, { message: 'Password Incorrect'});
         done(null, results);
       } catch (err) {
-        done(err, null)
+        console.error("❌ Database error:", err);
+        if (err.code === 'ECONNREFUSED') {
+          return done(null, false, {message: "lỗi database"})
+        }
+        return done(null, false, {message: "Internal Server Error"})
       }
     })
   );

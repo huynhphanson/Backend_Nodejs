@@ -10,8 +10,8 @@
   <div class="signInContainer">
     <form action="/login" class="formContainer" method="post">
       <h1>ĐĂNG NHẬP</h1>
-      <% if (typeof errors !== 'undefined') { %>
-        <h2><%= errors %></h2>
+      <% if (messages.error) { %>
+        <h2><%= messages.error %></h2>
       <% } %>
       <div class="emailContainer">
         <p>Email:</p>

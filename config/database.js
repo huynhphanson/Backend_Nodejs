@@ -12,3 +12,14 @@ export const database = mysql.createPool ({
   connectionLimit: process.env.DB_CONNECTION_LIMIT,
   queueLimit: 0
 });
+
+// Check database before running server
+database.getConnection()
+  .then((conn) => {
+    console.log("✅ Database connected successfully!");
+    conn.release();
+  })
+  .catch((err) => {
+    console.error("❌ Cannot connect to database:", err.code);
+    process.exit(1); // Dừng server nếu database chưa kết nối
+  });
