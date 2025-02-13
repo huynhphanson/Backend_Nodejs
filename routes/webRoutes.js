@@ -1,13 +1,24 @@
-const express = require('express');
-const { getSignInPage, getSignUpPage, signUpUser, signInUser } = require('../controllers/webControllers.js');
+import express from 'express';
+import { loginPage, registerPage, login, register, homePage } from '../controllers/webControllers.js';
+import passport from 'passport';
+import { validRegistration } from '../validation/user-valid.js';
+import { initializePassport } from '../config/passport-local.js';
+initializePassport(passport);
 
+export const webRoutes = express.Router();
 
-const webRouter = express.Router();
+webRoutes.get('/', loginPage);
+webRoutes.get('/register', registerPage);
+webRoutes.get('/home', homePage);
 
-webRouter.get('/', getSignInPage);
-webRouter.get('/signin', getSignInPage);
-webRouter.get('/signup', getSignUpPage);
-webRouter.post('/signUpUser', signUpUser);
-webRouter.post('/signInUser', signInUser);
+webRoutes.post('/register', validRegistration, register);
+webRoutes.post('/login', passport.authenticate('local'), (req, res) => {
+  req.session.visited = true;
+  res.status(200).render('home')
+});
 
-module.exports = webRouter;
+webRoutes.get('/auth/status', (req, res) => {
+  console.log('req.user:\n', req.user, '\n');
+  console.log('req.session:\n', req.session);
+  req.user ? res.sendStatus(200) : res.sendStatus(401); 
+})

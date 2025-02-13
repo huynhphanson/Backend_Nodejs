@@ -8,24 +8,24 @@
 </head>
 <body>
   <div class="signInContainer">
-    <form action="/signInUser" class="formContainer" method="post">
+    <form action="/login" class="formContainer" method="post">
       <h1>ĐĂNG NHẬP</h1>
       <% if (typeof errors !== 'undefined') { %>
         <h2><%= errors %></h2>
       <% } %>
       <div class="emailContainer">
         <p>Email:</p>
-        <input type="text" placeholder="Nhập Email" name="userEmail">
+        <input type="text" placeholder="Nhập Email" name="email">
       </div>
       <div class="passwordContainer">
         <p>Password:</p>
-        <input type="password" placeholder="Nhập password" name="userPassword">
+        <input type="password" placeholder="Nhập password" name="password">
       </div>
       <div class="signInBtnContainer">
         <input type="submit" value="ĐĂNG NHẬP">
       </div>
       <div class="refContainer">
-        <p>Chưa có tài khoản ? <a href="./signup">Đăng ký</a></p>
+        <p>Chưa có tài khoản ? <a href="./register">Đăng ký</a></p>
       </div>
     </form>
   </div>

@@ -8,22 +8,25 @@
 </head>
 <body>
   <div class="signUpContainer">
-    <form action="/signUpUser" class="formContainer" method="post">
+    <form action="/register" class="formContainer" method="post">
       <h1>ĐĂNG KÝ</h1>
-      <% if (typeof errors !== 'undefined') { %>
-        <h2><%= errors %></h2>
+      <% if (locals.errors) { %>
+        <h2><%- errors %></h2>
+      <% } %>
+      <% if (locals.msg) { %>
+        <h2><%- msg %></h2>
       <% } %>
       <div class="usernameContainer">
         <p>Username:</p>
-        <input type="text" placeholder="Nhập Username" name="userName">
+        <input type="text" placeholder="Nhập Username" name="username">
       </div>
       <div class="emailContainer">
         <p>Email:</p>
-        <input type="text" placeholder="Nhập Email" name="userEmail">
+        <input type="text" placeholder="Nhập Email" name="email">
       </div>
       <div class="passwordContainer">
         <p>Password:</p>
-        <input type="password" placeholder="Nhập password" name="userPassword">
+        <input type="password" placeholder="Nhập password" name="password">
       </div>
       <div class="passwordRepeatContainer">
         <p>Repeat Password:</p>
@@ -33,7 +36,7 @@
         <input type="submit" value="ĐĂNG KÝ">
       </div>
       <div class="refContainer">
-        <p>Đã có tài khoản ? <a href="/signin">Đăng nhập</a></p>
+        <p>Đã có tài khoản ? <a href="/">Đăng nhập</a></p>
       </div>
     </form>
   </div>
