@@ -8,12 +8,8 @@ import { QUERY } from '../query/query.js';
 export function initializePassport(passport) {
   passport.use(
     new LocalStrategy({usernameField: 'email'}, async (email, password, done) => {
-      console.log(`Inside Passport:`);
-      console.log(`Email: ${email}`);
-      console.log(`Password: ${password}`);
       try {
         let [results, fields] = await database.query(QUERY.SELECT_USER, [email]);
-        console.log('results:', results);
         if(!results.length) return done(null, false, { message: 'No User Found'});
         if(!await bcrypt.compare(password, results[0].hashPass)) return done(null, false, { message: 'Password Incorrect'});
         done(null, results);

@@ -15,12 +15,8 @@ export function registerPage (req, res) {
 }
 
 export function register (req, res) {
-  const errors = req.errors;
-  if (!errors.length) {
-    res.render('registerPage', {msg: 'Success!'});
-  } else {
-    res.render('registerPage', {errors});
-  }
+  req.flash('success', 'Đăng ký thành công')
+  res.redirect('/register');
 };
 
 export async function login (req, res) {

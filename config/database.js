@@ -13,13 +13,14 @@ export const database = mysql.createPool ({
   queueLimit: 0
 });
 
-// Check database before running server
-database.getConnection()
+export function databaseStatus (req, res, next) {
+  // Check database before running server
+  database.getConnection()
   .then((conn) => {
-    console.log("✅ Database connected successfully!");
     conn.release();
+    next();
   })
   .catch((err) => {
-    console.error("❌ Cannot connect to database:", err.code);
-    process.exit(1); // Dừng server nếu database chưa kết nối
+    res.status(500).render('500')
   });
+}

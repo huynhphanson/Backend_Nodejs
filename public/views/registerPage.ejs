@@ -10,12 +10,14 @@
   <div class="signUpContainer">
     <form action="/register" class="formContainer" method="post">
       <h1>ĐĂNG KÝ</h1>
-      <% if (locals.errors) { %>
-        <h2><%- errors %></h2>
+      <% if (messages.error) { %>
+          <%= messages.error %>
       <% } %>
-      <% if (locals.msg) { %>
-        <h2><%- msg %></h2>
+      
+      <% if (messages.success) { %>
+          <%= messages.success %>
       <% } %>
+      
       <div class="usernameContainer">
         <p>Username:</p>
         <input type="text" placeholder="Nhập Username" name="username">

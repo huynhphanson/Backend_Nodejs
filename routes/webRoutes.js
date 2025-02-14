@@ -1,8 +1,9 @@
 import express from 'express';
-import { loginPage, registerPage, login, register, homePage } from '../controllers/webControllers.js';
+import { loginPage, registerPage, register, homePage } from '../controllers/webControllers.js';
 import passport from 'passport';
-import { validRegistration } from '../validation/user-valid.js';
+import { validLogin, validRegistration } from '../validation/user-valid.js';
 import { initializePassport } from '../config/passport-local.js';
+import { databaseStatus } from '../config/database.js';
 initializePassport(passport);
 
 
@@ -13,7 +14,7 @@ webRoutes.get('/register', registerPage);
 webRoutes.get('/home', homePage);
 
 webRoutes.post('/register', validRegistration, register);
-webRoutes.post('/login', passport.authenticate('local', {
+webRoutes.post('/login', databaseStatus, validLogin, passport.authenticate('local', {
   successRedirect: '/home',
   failureRedirect: '/',
   failureFlash: true
