@@ -3,25 +3,20 @@ import { loginPage, registerPage, register, homePage } from '../controllers/webC
 import passport from 'passport';
 import { validLogin, validRegistration } from '../validation/user-valid.js';
 import { initializePassport } from '../config/passport-local.js';
-import { databaseStatus } from '../config/database.js';
+import { checkDBConnection } from '../config/database.js';
+import { checkAuthenticated, checkNotAuthenticated } from '../validation/check-authenticated.js';
 initializePassport(passport);
 
 
 export const webRoutes = express.Router();
 
-webRoutes.get('/', loginPage);
+webRoutes.get('/', checkNotAuthenticated, loginPage);
 webRoutes.get('/register', registerPage);
-webRoutes.get('/home', homePage);
+webRoutes.get('/home', checkAuthenticated, homePage);
 
 webRoutes.post('/register', validRegistration, register);
-webRoutes.post('/login', databaseStatus, validLogin, passport.authenticate('local', {
+webRoutes.post('/login', checkDBConnection, validLogin, passport.authenticate('local', {
   successRedirect: '/home',
   failureRedirect: '/',
   failureFlash: true
 }));
-
-webRoutes.get('/auth/status', (req, res) => {
-  console.log('req.user:\n', req.user, '\n');
-  console.log('req.session:\n', req.session);
-  req.user ? res.sendStatus(200) : res.sendStatus(401); 
-})

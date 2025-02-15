@@ -2,6 +2,6 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export const QUERY = {
-  SIGN_UP: `INSERT INTO ${process.env.DB_TABLE_NAME} (username, email, password, hashPass) VALUES (?, ?, ?, ?)`,
+  ADD_USER: `INSERT INTO ${process.env.DB_TABLE_NAME} (username, email, password, hashPass) VALUES (?, ?, ?, ?)`,
   SELECT_USER: `SELECT * FROM ${process.env.DB_TABLE_NAME} WHERE email = ?`
 }

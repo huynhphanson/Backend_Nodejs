@@ -10,8 +10,8 @@ export function initializePassport(passport) {
     new LocalStrategy({usernameField: 'email'}, async (email, password, done) => {
       try {
         let [results, fields] = await database.query(QUERY.SELECT_USER, [email]);
-        if(!results.length) return done(null, false, { message: 'No User Found'});
-        if(!await bcrypt.compare(password, results[0].hashPass)) return done(null, false, { message: 'Password Incorrect'});
+        if(!results.length) return done(null, false, { message: 'Email chưa đăng ký'});
+        if(!await bcrypt.compare(password, results[0].hashPass)) return done(null, false, { message: 'Mật khẩu không chính xác'});
         done(null, results);
       } catch (err) {
         console.error("❌ Database error:", err);

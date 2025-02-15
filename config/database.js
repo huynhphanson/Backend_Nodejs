@@ -13,7 +13,7 @@ export const database = mysql.createPool ({
   queueLimit: 0
 });
 
-export function databaseStatus (req, res, next) {
+export function checkDBConnection (req, res, next) {
   // Check database before running server
   database.getConnection()
   .then((conn) => {

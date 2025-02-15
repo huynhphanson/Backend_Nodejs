@@ -3,6 +3,7 @@ dotenv.config();
 import express from 'express';
 import { webRoutes } from './routes/webRoutes.js';
 import { configViewEngine } from './config/viewEngine.js';
+import { checkDBConnection } from './config/database.js';
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({extended: false})); // for form data
 
 // config template engine
 configViewEngine(app);
+
 
 app.use('/', webRoutes);
 

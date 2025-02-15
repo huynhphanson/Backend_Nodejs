@@ -35,8 +35,8 @@ export async function validRegistration (req, res, next) {
       const saltRounds = 10; // 10 digits for bcrypt
       const hashPassword = await bcrypt.hash(password, saltRounds);
       
-      let [results, fields] = await database.query(
-        QUERY.SIGN_UP, [username, email, password, hashPassword]
+      await database.query(
+        QUERY.ADD_USER, [username, email, password, hashPassword]
       );
       next()
     } else {
