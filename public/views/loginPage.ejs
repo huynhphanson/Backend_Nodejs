@@ -4,28 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>tsdev</title>
-  <link rel="stylesheet" href="../css/styleGeneral.css">
+  <link rel="stylesheet" href="../css/login-register.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <div class="signInContainer">
-    <form action="/login" class="formContainer" method="post">
+  <div class="login-container">
+    <form action="/login" class="form-container" method="post">
       <h1>ĐĂNG NHẬP</h1>
       <% if (messages.error) { %>
-        <h2><%= messages.error %></h2>
+        <label class="alert alert-warning"><%= messages.error %></label>
       <% } %>
-      <div class="emailContainer">
-        <p>Email:</p>
-        <input type="text" placeholder="Nhập Email" name="email">
+      <div class="field-container">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="text" name="email" placeholder="">
+        <label class="text-label">Email</label>
       </div>
-      <div class="passwordContainer">
-        <p>Password:</p>
-        <input type="password" placeholder="Nhập password" name="password">
+      <div class="field-container">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" name="password" placeholder="">
+        <label class="text-label">Password</label>
       </div>
-      <div class="signInBtnContainer">
+      <div class="login-btn-container">
         <input type="submit" value="ĐĂNG NHẬP">
       </div>
-      <div class="refContainer">
-        <p>Chưa có tài khoản ? <a href="./register">Đăng ký</a></p>
+      <div class="ref-container">
+        <label>Chưa có tài khoản ? <a href="./register">Đăng ký</a></label>
       </div>
     </form>
   </div>

@@ -5,15 +5,10 @@ import validator from 'validator';
 
 export async function validRegistration (req, res, next) {
   try {
-    const missingFields = [];
     const { username, email, password, passwordConfirm } = req.body;
-    if (!username) missingFields.push("Tên người dùng");
-    if (!email) missingFields.push("Email");
-    if (!password) missingFields.push("Mật khẩu");
-    if (!passwordConfirm) missingFields.push("Xác nhận mật khẩu");
 
-    if(missingFields.length > 0) {
-      req.flash('error', `Vui lòng điền: ${missingFields}`);
+    if(!username || !email || !password || !passwordConfirm) {
+      req.flash('error', `Vui lòng điền đủ thông tin`);
       return res.status(400).redirect('/register');
     };
     if(!validator.isEmail(email)) {

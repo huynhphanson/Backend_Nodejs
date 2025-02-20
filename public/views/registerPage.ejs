@@ -4,45 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>tsdev</title>
-  <link rel="stylesheet" href="../css/styleGeneral.css">
+  <link rel="stylesheet" href="../css/login-register.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <div class="signUpContainer">
-    <form action="/register" class="formContainer" method="post">
+  <div class="register-container">
+    <form action="/register" class="form-container" method="post">
       <h1>ĐĂNG KÝ</h1>
       <% if (messages.error) { %>
-          <%= messages.error %>
+          <label for="" class="alert alert-warning"><%= messages.error %></label>
       <% } %>
       
       <% if (messages.success) { %>
-          <%= messages.success %>
+          <label for="" class="alert alert-success"><%= messages.success %></label>
       <% } %>
       
-      <div class="usernameContainer">
-        <p>Username:</p>
-        <input type="text" placeholder="Nhập Username" name="username">
+      <div class="field-container">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" placeholder="" name="username" class="username">
+        <label class="text-label">Username</label>
       </div>
-      <div class="emailContainer">
-        <p>Email:</p>
-        <input type="text" placeholder="Nhập Email" name="email">
+      <div class="field-container">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="text" placeholder="" name="email" class="email">
+        <label class="text-label">Email</label>
       </div>
-      <div class="passwordContainer">
-        <p>Password:</p>
-        <input type="password" placeholder="Nhập password" name="password">
+      <div class="field-container">
+        <i class="fa-solid fa-lock"></i>
+        <i class="fa-solid fa-eye"></i>
+        <input type="password" placeholder="" name="password" class="password">
+        <label class="text-label">Password</label>
       </div>
-      <div class="passwordRepeatContainer">
-        <p>Repeat Password:</p>
-        <input type="password" placeholder="Nhập password" name="passwordConfirm">
+      <div class="field-container">
+        <i class="fa-solid fa-unlock"></i>
+        <i class="fa-solid fa-eye"></i>
+        <input type="password" placeholder="" name="passwordConfirm" class="passwordConfirm">
+        <label class="text-label">Confirm Password</label>
       </div>    
-      <div class="signUpBtnContainer">
+      <div class="register-btn-container">
         <input type="submit" value="ĐĂNG KÝ">
       </div>
-      <div class="refContainer">
-        <p>Đã có tài khoản ? <a href="/">Đăng nhập</a></p>
+      <div class="ref-container">
+        <label>Đã có tài khoản ? <a href="/">Đăng nhập</a></label>
       </div>
     </form>
   </div>
-  <script>
+  <script src="../js/user-valid.js">
 
   </script>
 </body>
