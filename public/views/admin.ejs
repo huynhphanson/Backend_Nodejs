@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/admin.css">
+    <title>Adminstrator</title>
+</head>
+<body>
+  <h1>Danh sách người dùng</h1>
+  <table>
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Tên</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Create</th>
+              <th>last_access</th>
+              <th>Delete</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% users.forEach(user => { %>
+              <tr id="row-<%= user.id %>">
+                  <td><%= user.id %></td>
+                  <td><%= user.username %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.role %></td>
+                  <td><%= user.create_at %></td>
+                  <td><%= user.last_access %></td>
+                  <td>
+                    <button onclick="deleteUser(<%= user.id %>)">Xóa</button>
+                  </td>
+              </tr>
+          <% }); %>
+      </tbody>
+  </table>
+  <script src="../js/utils-admin.js"></script>
+</body>
+</html>

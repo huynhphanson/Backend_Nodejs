@@ -1,5 +1,6 @@
 import express from 'express';
-import { loginPage, registerPage, register, homePage } from '../controllers/webControllers.js';
+import { loginPage, registerPage, register, homePage} from '../controllers/webControllers.js';
+import { admin, adminDel } from '../controllers/adminController.js';
 import passport from 'passport';
 import { validLogin, validRegistration } from '../validation/user-valid.js';
 import { initializePassport } from '../config/passport-local.js';
@@ -13,6 +14,7 @@ export const webRoutes = express.Router();
 webRoutes.get('/', checkNotAuthenticated, loginPage);
 webRoutes.get('/register', registerPage);
 webRoutes.get('/home', checkAuthenticated, homePage);
+webRoutes.get('/admin', admin)
 
 webRoutes.post('/register', validRegistration, register);
 webRoutes.post('/login', checkDBConnection, validLogin, passport.authenticate('local', {
@@ -20,3 +22,4 @@ webRoutes.post('/login', checkDBConnection, validLogin, passport.authenticate('l
   failureRedirect: '/',
   failureFlash: true
 }));
+webRoutes.delete('/admin/:id', adminDel)
